@@ -1,17 +1,10 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<title>Lynstore Admin | Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<meta name="keywords" content="lynstore.id" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -28,52 +21,60 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
+
+<script>
+	if (sessionStorage.getItem('lynstore_session') !== null) {
+		window.location = 'index.html';
+	}
+</script>
 </head> 
 <body class="login-bg">
-		<div class="login-body">
-			<div class="login-heading">
-				<h1>Login</h1>
-			</div>
-			<div class="login-info">
-				<form>
-					<input type="text" class="user" name="email" placeholder="Email" required="">
-					<input type="password" name="password" class="lock" placeholder="Password">
-					<div class="forgot-top-grids">
-						<div class="forgot-grid">
-							<ul>
-								<li>
-									<input type="checkbox" id="brand1" value="">
-									<label for="brand1"><span></span>Remember me</label>
-								</li>
-							</ul>
-						</div>
-						<div class="forgot">
-							<a href="#">Forgot password?</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<input type="submit" name="Sign In" value="Login">
-					<div class="signup-text">
-						<a href="signup.html">Don't have an account? Create one now</a>
-					</div>
-					<hr>
-					<h2>or login with</h2>
-					<div class="login-icons">
+	<div class="login-body">
+		<div class="login-heading">
+			<h1>Login</h1>
+		</div>
+		<div class="login-info">
+			<form id="loginForm">
+				<input type="text" class="user" name="username_email" placeholder="Username/Email" required>
+				<input type="password" name="password" class="lock" placeholder="Password" required>
+				<div class="forgot-top-grids">
+					<div class="forgot-grid">
 						<ul>
-							<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#" class="dribbble"><i class="fa fa-dribbble"></i></a></li>
+							<li>
+								<input type="checkbox" id="brand1" value="">
+								<label for="brand1"><span></span>Remember me</label>
+							</li>
 						</ul>
 					</div>
-				</form>
-			</div>
+					<div class="forgot">
+						<a href="#">Forgot password?</a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<input type="submit" name="Sign In" value="Login">
+			</form>
 		</div>
-		<div class="go-back login-go-back">
-				<a href="index.html">Go To Home</a>
-			</div>
-		<div class="copyright login-copyright">
-           <p>© 2016 Baxster . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    
-		</div>
+	</div>	
+	<div class="copyright login-copyright">
+	   <p>© 2016 lynstore.id . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    
+	</div>
+	<script>
+		$('#loginForm').submit(function(event){
+			event.preventDefault();
+			$.ajax({
+				type: "POST",
+				url: "http://websitetester.hol.es/api/login",
+				data: {
+					username_email: $('input[name="username_email"]').val(),
+					password: $('input[name="password"]').val()
+				},
+				async: true,
+				crossDomain: true,
+				success: function(data, status, xhr) {
+					console.log(data);
+				}
+			});
+		});
+	</script>
 </body>
 </html>
